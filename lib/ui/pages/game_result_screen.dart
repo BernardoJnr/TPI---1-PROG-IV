@@ -115,7 +115,7 @@ class ResultGame extends StatelessWidget {
                                           children: [
                                             const Icon(
                                               Icons.bar_chart,
-                                              color: iconColor,
+                                              color: lettersColor,
                                               size: 25,
                                             ),
                                             const SizedBox(

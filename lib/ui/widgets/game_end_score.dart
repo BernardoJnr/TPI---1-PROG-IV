@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volley_app/theme/text_styles.dart';
 
 class EndGameScore extends StatelessWidget {
   final String teamName;
@@ -35,11 +36,11 @@ class EndGameScore extends StatelessWidget {
           height: 1.5,
           width: 50,
         ),
-        Text('Ace: $aceScore', style: const TextStyle(fontSize: 18)),
-        Text('Ataque: $attackScore', style: const TextStyle(fontSize: 18)),
-        Text('Bloqueio: $blockScore', style: const TextStyle(fontSize: 18)),
-        Text('Erro: $errorScore', style: const TextStyle(fontSize: 18)),
-        Text('Set Ponto: $finalScore', style: const TextStyle(fontSize: 18)),
+        Text('Ace: $aceScore', style: fontSizeStatic),
+        Text('Ataque: $attackScore', style: fontSizeStatic),
+        Text('Bloqueio: $blockScore', style: fontSizeStatic),
+        Text('Erro: $errorScore', style: fontSizeStatic),
+        Text('Set Ponto: $finalScore', style: fontSizeStatic),
       ],
     );
   }

@@ -42,9 +42,6 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     final teams = Provider.of<TeamProvider>(context).teams;
 
     return Scaffold(
@@ -52,35 +49,82 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Container(
-              height: screenHeight,
-              width: screenWidth,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: iconColor,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back),
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Column(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: lettersColor,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <DropdownButton>[
+                          DropdownButton<String>(
+                            value: time_a,
+                            hint: Text('Time - A'),
+                            items: teams
+                                .where((teams) => teams.name != time_b)
+                                .map(
+                              (team) {
+                                return DropdownMenuItem<String>(
+                                  value: team.name,
+                                  child: Text(team.name),
+                                );
+                              },
+                            ).toList(),
+                            onChanged: (value) {
+                              setState(
+                                () {
+                                  time_a = value;
+
+                                  if (time_b == value) {
+                                    time_b = null;
+                                  }
+                                },
+                              );
+                            },
+                            style: const TextStyle(
+                                color: lettersColor2, fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      createElevatedButton(
+                        onPressed: () {
+                          if (time_a != null && time_b != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GameZone(
+                                  teamOneName: time_a!,
+                                  teamTwoName: time_b!,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        text: 'Começar',
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 48),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <DropdownButton>[
                             DropdownButton<String>(
-                              value: time_a,
-                              hint: Text('Time - A'),
+                              value: time_b,
+                              hint: Text('Time - B'),
                               items: teams
-                                  .where((teams) => teams.name != time_b)
+                                  .where((teams) => teams.name != time_a)
                                   .map(
                                 (team) {
                                   return DropdownMenuItem<String>(
@@ -92,11 +136,7 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
                               onChanged: (value) {
                                 setState(
                                   () {
-                                    time_a = value;
-
-                                    if (time_b == value) {
-                                      time_b = null;
-                                    }
+                                    time_b = value;
                                   },
                                 );
                               },
@@ -105,58 +145,11 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
                             ),
                           ],
                         ),
-                        createElevatedButton(
-                          onPressed: () {
-                            if (time_a != null && time_b != null) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => GameZone(
-                                    teamOneName: time_a!,
-                                    teamTwoName: time_b!,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                          text: 'Começar',
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 48),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <DropdownButton>[
-                              DropdownButton<String>(
-                                value: time_b,
-                                hint: Text('Time - B'),
-                                items: teams
-                                    .where((teams) => teams.name != time_a)
-                                    .map(
-                                  (team) {
-                                    return DropdownMenuItem<String>(
-                                      value: team.name,
-                                      child: Text(team.name),
-                                    );
-                                  },
-                                ).toList(),
-                                onChanged: (value) {
-                                  setState(
-                                    () {
-                                      time_b = value;
-                                    },
-                                  );
-                                },
-                                style: const TextStyle(
-                                    color: lettersColor2, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

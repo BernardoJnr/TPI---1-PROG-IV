@@ -11,7 +11,7 @@ IconButton createIconButton({
   return IconButton(
     onPressed: onPressed,
     icon: Icon(icon),
-    color: iconColor,
+    color: lettersColor,
   );
 }
 

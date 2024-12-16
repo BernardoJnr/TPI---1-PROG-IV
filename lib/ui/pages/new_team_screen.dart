@@ -38,7 +38,7 @@ class _NewTeamState extends State<NewTeam> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
               ),
             ),
             Center(
@@ -49,7 +49,7 @@ class _NewTeamState extends State<NewTeam> {
                   children: [
                     TextField(
                       controller: _teamNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Nome',
                       ),
                     ),
@@ -71,7 +71,7 @@ class _NewTeamState extends State<NewTeam> {
                         if (name.isNotEmpty && numberOfPlayers != null) {
                           final newTeam = Team(
                             name: name,
-                            numberOfPlayers: numberOfPlayers,
+                            numPlayers: numberOfPlayers,
                           );
 
                           Provider.of<TeamProvider>(context, listen: false)

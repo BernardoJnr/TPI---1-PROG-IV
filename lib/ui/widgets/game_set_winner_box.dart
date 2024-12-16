@@ -26,7 +26,7 @@ class SetWinnerBox extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(60),
         decoration: BoxDecoration(
-          color: iconColor.withOpacity(0.9),
+          color: lettersColor.withOpacity(0.9),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(

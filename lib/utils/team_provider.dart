@@ -7,14 +7,31 @@ class TeamProvider extends ChangeNotifier {
   List<Team> get teams => _teams;
 
   void addTeam(Team team) {
+    // Limite de 6 times
     if (_teams.length < 6) {
-      _teams.add(team);
-      notifyListeners();
+      // Limite de 15 caracteres no nome do time
+      if (team.name.length <= 13) {
+        // Limite de 12 jogadores por time
+        if (team.numPlayers <= 12) {
+          _teams.add(team);
+          notifyListeners();
+        } else {
+          _showError("Número máximo de jogadores por time é 12.");
+        }
+      } else {
+        _showError("O nome do time pode ter no máximo 15 caracteres.");
+      }
+    } else {
+      _showError("Número máximo de times atingido (6).");
     }
   }
 
   void removeTeam(String teamName) {
     _teams.removeWhere((team) => team.name == teamName);
     notifyListeners();
+  }
+
+  void _showError(String message) {
+    print("Erro: $message");
   }
 }

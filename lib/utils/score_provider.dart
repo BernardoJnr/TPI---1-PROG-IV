@@ -7,18 +7,16 @@ class ScoreProvider with ChangeNotifier {
   int _teamBScore = 0;
   int setAScore = 0;
   int setBScore = 0;
-  String _winner = '';
   String _setWinner = '';
   List<List<int>> setScores = [];
 
   final Stopwatch _stopwatch = Stopwatch();
+  List<Duration> _setDurations = [];
   Timer? _timer;
   String _elapsedTime = '00:00';
-  List<Duration> _setDurations = [];
 
   int get teamAScore => _teamAScore;
   int get teamBScore => _teamBScore;
-  String get winner => _winner;
   String get setWinner => _setWinner;
   String get elapsedTime => _elapsedTime;
   List<Duration> get setDurations => _setDurations;
@@ -84,7 +82,6 @@ class ScoreProvider with ChangeNotifier {
   void resetScores() {
     _teamAScore = 0;
     _teamBScore = 0;
-    _winner = '';
     _setWinner = '';
     setAScore = 0;
     setBScore = 0;

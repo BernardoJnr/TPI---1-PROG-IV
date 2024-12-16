@@ -1,6 +1,6 @@
 class Team {
   final String name;
-  final int numberOfPlayers;
+  final int numPlayers;
 
-  Team({required this.name, required this.numberOfPlayers});
+  Team({required this.name, required this.numPlayers});
 }
