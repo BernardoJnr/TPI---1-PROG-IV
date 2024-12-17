@@ -8,17 +8,19 @@ import 'package:volley_app/utils/team_provider.dart';
 class VolleyTeams extends StatelessWidget {
   final String teamName;
   final int numberPlayers;
+  final double screenWidth;
 
   const VolleyTeams({
     super.key,
     required this.teamName,
     required this.numberPlayers,
+    required this.screenWidth,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
+      width: screenWidth * 0.80,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Consumer<TeamProvider>(

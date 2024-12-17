@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: backgroundScreenColor,
       body: SafeArea(
@@ -90,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               return VolleyTeams(
                                 teamName: team.name,
                                 numberPlayers: team.numPlayers,
+                                screenWidth: screenWidth,
                               );
                             }).toList(),
                           );
