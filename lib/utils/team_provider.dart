@@ -7,11 +7,8 @@ class TeamProvider extends ChangeNotifier {
   List<Team> get teams => _teams;
 
   void addTeam(Team team) {
-    // Limite de 6 times
     if (_teams.length < 6) {
-      // Limite de 15 caracteres no nome do time
       if (team.name.length <= 13) {
-        // Limite de 12 jogadores por time
         if (team.numPlayers <= 12) {
           _teams.add(team);
           notifyListeners();
