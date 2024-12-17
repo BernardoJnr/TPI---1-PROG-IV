@@ -45,7 +45,6 @@ class _GameZoneState extends State<GameZone> {
   @override
   void dispose() {
     _timer?.cancel();
-    super.dispose();
     Provider.of<ScoreProvider>(context, listen: false).stopStopwatch();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:volley_app/theme/text_styles.dart';
+import 'package:volley_app/ui/widgets/game_function_buttons.dart';
 import 'package:volley_app/utils/team_provider.dart';
 
 class VolleyTeams extends StatelessWidget {
@@ -32,16 +33,13 @@ class VolleyTeams extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    IconButton(
+                    createIconButton(
+                      Icons.delete,
                       onPressed: () {
                         Provider.of<TeamProvider>(context, listen: false)
                             .removeTeam(teamName);
                       },
-                      icon: const Icon(
-                        Icons.delete,
-                        color: lettersColor,
-                        size: 15,
-                      ),
+                      icon: Icons.delete,
                     ),
                     const SizedBox(width: 30),
                     Row(

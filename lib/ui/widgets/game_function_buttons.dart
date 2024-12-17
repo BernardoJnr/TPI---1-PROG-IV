@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:volley_app/theme/text_styles.dart';
+import 'package:volley_app/utils/team.dart';
 
 enum IconPosition { left, right }
 
-IconButton createIconButton({
+IconButton createIconButton(
+  IconData delete, {
   required VoidCallback onPressed,
   required IconData icon,
 }) {
@@ -46,6 +48,27 @@ ElevatedButton createElevatedButton({
         Text(text),
       ],
     ),
+  );
+}
+
+DropdownButton<String> createTeamDropdown(
+  String? currentValue, // Valor atual do dropdown
+  String hintText, // Texto 
+  List<Team> teams, // Lista de times
+  String? otherTeamValue, // Valor do outro dropdown (time adversário)
+  Function(String?) onChanged, // Função chamada ao mudar a seleção
+) {
+  return DropdownButton<String>(
+    value: currentValue,
+    hint: Text(hintText),
+    items: teams.where((team) => team.name != otherTeamValue).map((team) {
+      return DropdownMenuItem<String>(
+        value: team.name,
+        child: Text(team.name),
+      );
+    }).toList(),
+    onChanged: onChanged,
+    style: const TextStyle(color: lettersColor2, fontSize: 20),
   );
 }
 

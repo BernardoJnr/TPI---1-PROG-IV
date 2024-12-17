@@ -56,7 +56,7 @@ class _NewTeamState extends State<NewTeam> {
                     SizedBox(height: 20),
                     TextField(
                       controller: _numberOfPlayersController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'N° Jogadores',
                       ),
                       keyboardType: TextInputType.number,

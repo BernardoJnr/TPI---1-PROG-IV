@@ -69,33 +69,21 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
                     children: <Widget>[
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <DropdownButton>[
-                          DropdownButton<String>(
-                            value: time_a,
-                            hint: Text('Time - A'),
-                            items: teams
-                                .where((teams) => teams.name != time_b)
-                                .map(
-                              (team) {
-                                return DropdownMenuItem<String>(
-                                  value: team.name,
-                                  child: Text(team.name),
-                                );
-                              },
-                            ).toList(),
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  time_a = value;
-
-                                  if (time_b == value) {
-                                    time_b = null;
-                                  }
-                                },
-                              );
+                        children: <Widget>[
+                          // Chamada da função para o dropdown do Time A
+                          createTeamDropdown(
+                            time_a,
+                            'Time - A',
+                            teams,
+                            time_b,
+                            (value) {
+                              setState(() {
+                                time_a = value;
+                                if (time_b == value) {
+                                  time_b = null;
+                                }
+                              });
                             },
-                            style: const TextStyle(
-                                color: lettersColor2, fontSize: 20),
                           ),
                         ],
                       ),
@@ -119,29 +107,18 @@ class _TeamVsTeamState extends State<TeamVsTeam> {
                         padding: const EdgeInsets.only(right: 48),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <DropdownButton>[
-                            DropdownButton<String>(
-                              value: time_b,
-                              hint: Text('Time - B'),
-                              items: teams
-                                  .where((teams) => teams.name != time_a)
-                                  .map(
-                                (team) {
-                                  return DropdownMenuItem<String>(
-                                    value: team.name,
-                                    child: Text(team.name),
-                                  );
-                                },
-                              ).toList(),
-                              onChanged: (value) {
-                                setState(
-                                  () {
-                                    time_b = value;
-                                  },
-                                );
+                          children: <Widget>[
+                            // Chamada da função para o dropdown do Time B
+                            createTeamDropdown(
+                              time_b,
+                              'Time - B',
+                              teams,
+                              time_a,
+                              (value) {
+                                setState(() {
+                                  time_b = value;
+                                });
                               },
-                              style: const TextStyle(
-                                  color: lettersColor2, fontSize: 20),
                             ),
                           ],
                         ),
